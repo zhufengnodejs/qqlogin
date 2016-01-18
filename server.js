@@ -6,7 +6,6 @@ app.use(express.static(__dirname));
 var appId = '101283445';
 app.get('/re',function(req,res){
     console.log(req.url);
-    var code = req.query.code;
     var url = 'https://graph.qq.com/oauth2.0/token';
     var qs = {
         grant_type:'authorization_code',
@@ -21,6 +20,7 @@ app.get('/re',function(req,res){
         var accessUrl = 'https://graph.qq.com/oauth2.0/me';
         request.get({url:accessUrl, oauth:{}, qs:{access_token:access_token}, json:true}, function (e, r, result) {
             result = querystring.parse(result);
+            console.log(result);
             var clientId = result['client_id'];
             var getInfoUrl = 'https://graph.qq.com/user/get_user_info';
             var qs = {
