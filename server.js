@@ -13,7 +13,7 @@ app.get('/re',function(req,res){
         code:req.query.code,
         redirect_uri:'http://qq.zhufengpeixun.cn/re'
     };
-    request.get({url:url, oauth:{}, qs:qs, json:false}, function (e, r, user) {
+    request.get({url:url, oauth:{}, qs:qs, json:true}, function (e, r, user) {
         console.log(user)
     })
     res.end('hello');
