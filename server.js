@@ -20,13 +20,13 @@ app.get('/re',function(req,res){
         var accessUrl = 'https://graph.qq.com/oauth2.0/me';
         request.get({url:accessUrl, oauth:{}, qs:{access_token:access_token}, json:false}, function (e, r, result) {
             console.log(result);
-            result = JSON.parse(result);
+            var openId = result.match(/"openid":"([\s\S]+)"/)[1];
             var clientId = result['client_id'];
             var getInfoUrl = 'https://graph.qq.com/user/get_user_info';
             var qs = {
                 access_token:  access_token,
                 oauth_consumer_key:appId,
-                openid:clientId
+                openid:openId
             };
             request.get({url:getInfoUrl, oauth:{}, qs:qs, json:false}, function (e, r, result) {
                 result = querystring.parse(result);
