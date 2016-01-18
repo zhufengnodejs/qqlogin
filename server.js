@@ -29,7 +29,7 @@ app.get('/re',function(req,res){
                 openid:openId
             };
             request.get({url:getInfoUrl, oauth:{}, qs:qs, json:false}, function (e, r, result) {
-                result = querystring.parse(result);
+                result = JSON.parse(result);
                 console.log(result);
             })
         })
